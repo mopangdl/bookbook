@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.book.dao.IgPostDao">
+
+	<resultMap id="IgPostResultMap" type="IgPost">
+	    <result property="post_id" column="post_id"/>
+	    <result property="post_title" column="post_title"/>
+	    <result property="post_contents" column="post_contents"/>
+	    <result property="post_user_id" column="post_user_id"/>
+	    <result property="post_created_date" column="post_created_date"/>
+	    <result property="post_delete_yn" column="post_delete_yn"/>
+	</resultMap>
+
+    <select id="selectPostList" parameterType="IgPost" resultMap="IgPostResultMap">
+        SELECT 
+               post_id
+             , post_title
+             , post_contents
+             , post_user_id
+             , post_created_date
+             , post_delete_yn
+          FROM ig_post
+      ORDER BY post_id 
+          DESC
+    </select>
+
+    <select id="selectPost" parameterType="IgPost" resultType="IgPost">
+        SELECT * 
+          FROM ig_post 
+         WHERE post_id = #{post_id}
+    </select>
+	
+    <insert id="insertPost" parameterType="IgPost">
+        <selectKey keyProperty="post_id" resultType="int" order="BEFORE">
+           select seq_ig_post_id.nextval from dual
+        </selectKey>
+        INSERT 
+          INTO ig_post 
+             (
+               post_id
+             , post_title
+             , post_contents
+             , post_user_id
+             , post_password
+             , post_created_date
+<!--              , post_updated_date -->
+<!--              , post_like -->
+<!--              , post_delete_yn -->
+             , post_ip
+             )
+        VALUES 
+             (
+               #{post_id}
+             , #{post_title}
+             , #{post_contents}
+             , #{post_user_id}
+             , #{post_password}
+             , sysdate
+<!--              , #{post_updated_date} -->
+<!--              , #{post_like} -->
+<!--              , #{post_delete_yn} -->
+             , #{post_ip}
+             )
+    </insert>
+
+<!--     <update id="update" parameterType="IgPost"> -->
+<!--         UPDATE ig_post -->
+<!--            SET post_title = #{post_title} -->
+<!--              , post_contents = #{post_contents} -->
+<!--              , post_user_id = #{post_user_id} -->
+<!--              , post_password = #{post_password} -->
+<!--              , post_created_date = #{post_created_date} -->
+<!--              , post_updated_date = #{post_updated_date} -->
+<!--              , post_like = #{post_like} -->
+<!--              , post_delete_yn = #{post_delete_yn} -->
+<!--              , post_ip = #{post_ip} -->
+<!--          WHERE post_id = #{post_id}  -->
+<!--     </update> -->
+ 
+<!--     <delete id="delete" parameterType="int"> -->
+<!--         DELETE -->
+<!--           FROM ig_post -->
+<!--          WHERE post_id = #{post_id} -->
+<!--     </delete> -->
+</mapper>

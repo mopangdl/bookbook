@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.book.book.dao.IgLikeDao">
+ 
+	<select id="selectLike" resultType="like">
+	  SELECT * 
+	    FROM ig_like 
+	   WHERE like_id = #{likeId}
+	</select>
+  
+	<insert id="insertLike" parameterType="like">
+	  <selectKey keyProperty="like_id" resultType="int" order="BEFORE">
+	      select seq_ig_like_id.nextval from dual
+	  </selectKey>
+	  INSERT
+	    INTO ig_like (
+	         like_id
+	       , post_id
+	       , like_date
+	       , like_ip
+	  )VALUES(
+	         #{likeId}
+	       , #{postId}
+	       , sysdate
+	       , #{likeIp} 
+	  )
+	</insert>
+</mapper>
