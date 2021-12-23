@@ -8,8 +8,8 @@
 <style>
 *{margin:0; padding:0; list-style:none;}
 body{background:#E2F5E8; font-size:12px;}
-.content-wrap{width:320px; margin:0 auto;}
-.content-wrap .header_btn{width:120px; height:30px; display:table; margin:10px 0;}
+.content-wrap{width:320px; margin:0 auto; padding-top:50px;}
+.content-wrap .header_btn{background:#E2F5E8; width:320px; height:30px; display:table; padding:10px 0; position:fixed; top:0; left:50%; transform:translate(-50%, 0); z-index:10;}
 .content-wrap .header_btn .write_btn{padding:0 10px; cursor:pointer; width:120px; height:30px; text-align:center; display:table-cell; vertical-align:middle; background:#22B14C; border-radius:7px; color:#fff; font-weight:bold;}
 .content-wrap .list{display:flex; flex-direction:column; width:100%;}
 .content-wrap .list .post_wrap{width:300px; height:400px; border-radius:10px; background:#fff; padding:15px 10px; position:relative; margin-top:15px;}
